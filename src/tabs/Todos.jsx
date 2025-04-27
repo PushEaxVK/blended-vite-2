@@ -1,9 +1,15 @@
 import { useState } from 'react';
 import Form from '../components/Form/Form';
 import Text from '../components/Text/Text';
+import TodoList from '../components/TodoList/TodoList';
 
 const Todos = () => {
   const [todoText, setTodoText] = useState('');
+
+  const todos = [
+    { id: '1', text: 'Practice more' },
+    { id: '2', text: 'Get all tasks done on time' },
+  ];
 
   const addNewTodo = queryString => {
     console.log(queryString);
@@ -13,8 +19,11 @@ const Todos = () => {
   return (
     <>
       <Form onSubmit={addNewTodo} />
-      <Text textAlign="center">There are no any todos ...</Text>
-      <Text textAlign="center">{todoText}</Text>
+      {todos.length > 0 ? (
+        <TodoList todos={todos} />
+      ) : (
+        <Text textAlign="center">There are no any todos ...</Text>
+      )}
     </>
   );
 };
